@@ -125,6 +125,10 @@ typings/
 
 secrets.local.yaml
 config.local.yaml
+path.local.yaml
+moodle-downloads
+moodle-downloads/
 downloads/
 downloads
 aria2c_input.txt
+unifi-moodle-downloader
