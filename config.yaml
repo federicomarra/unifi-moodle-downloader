@@ -1,4 +1,4 @@
 downloader: internal
-# downloader: external    # uncomment this line (and comment the first) to use the external downloader aria2c
+  # downloader: aria2    # uncomment this line to use the external downloader aria2c
 courseIDs:
-  - [30925, RO]    # Ricerca Operativa A.A.2022-2023
+  - 30925          # Ricerca Operativa A.A.2022-2023
