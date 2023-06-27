@@ -132,3 +132,4 @@ downloads/
 downloads
 aria2c_input.txt
 unifi-moodle-downloader
+.DS_Store
