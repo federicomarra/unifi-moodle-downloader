@@ -1,12 +1,12 @@
 {
-  "name": "unifimoodledownloader",
+  "name": "unifi-moodle-downloader",
   "description": "A simple scraper & downloader for Moodle resources",
-  "version": "0.1.0",
+  "version": "1.0",
   "main": "app.js",
-  "author": "Niccolò Maggioni <nicco.maggioni@gmail.com>",
+  "author": "Federico Marra <fecrom@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nmaggioni/UniFiMoodleDownloader.git"
+    "url": "https://github.com/federicomarra/unifi-moodle-downloader.git",
   },
   "engines": {
     "node": ">12"
