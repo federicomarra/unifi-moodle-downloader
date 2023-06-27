@@ -1,8 +1,33 @@
-# Created by https://www.gitignore.io/api/node,jetbrains+all
+### Local ###
+secrets.local.yaml
+config.local.yaml
+path.local.yaml
+*.local.yaml
+
+### Downloads ###
+moodle-downloads
+moodle-downloads/
+downloads/
+downloads
+
+### Execution ###
+aria2c_input.txt
+unifi-moodle-downloader
+
+### Mac Junks ###
+.DS_Store
+lib/.DS_Store
+
 
 ### JetBrains+all ###
+# Created by https://www.gitignore.io/api/node,jetbrains+all
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+.idea/
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+# IntelliJ
+/out/
 
 # User-specific stuff:
 .idea/**/workspace.xml
@@ -31,13 +56,7 @@ cmake-build-debug/
 ## File-based project format:
 *.iws
 
-## Plugin-specific files:
-
-# IntelliJ
-/out/
-
-# mpeltonen/sbt-idea plugin
-.idea_modules/
+### Plugin-specific files: ###
 
 # JIRA plugin
 atlassian-ide-plugin.xml
@@ -53,12 +72,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
-
-### JetBrains+all Patch ###
-# Ignores the whole idea folder
-# See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
-
-.idea/
 
 ### Node ###
 # Logs
@@ -95,7 +108,7 @@ bower_components
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directories
+### Dependency directories ###
 node_modules/
 jspm_packages/
 
@@ -120,16 +133,4 @@ typings/
 # dotenv environment variables file
 .env
 
-
 # End of https://www.gitignore.io/api/node,jetbrains+all
-
-secrets.local.yaml
-config.local.yaml
-path.local.yaml
-moodle-downloads
-moodle-downloads/
-downloads/
-downloads
-aria2c_input.txt
-unifi-moodle-downloader
-.DS_Store
