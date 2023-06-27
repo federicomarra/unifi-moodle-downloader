@@ -13,17 +13,21 @@ Crawler e downloader di risorse per i corsi Moodle dell'_Università degli Studi
    Imponi i corsi nella sezione `coursesIDs` come tupla `[id, nome_corso]`:
    ```yaml
    courseIDs:
-   - [30925, RO]    # Ricerca Operativa A.A.2022-2023
+   - 30925    # Ricerca Operativa A.A.2022-2023
    ```
     >    **Nota:** gli ID dei corsi sono disponibili nella barra di ricerca di Moodle, ad esempio:
         `https://moodle.unifi.it/course/view.php?id=30925` -> `30925`
 4. _(Opzionale)_ Crea una copia di [`secrets.yaml`](secrets.yaml) chiamata `secrets.local.yaml`.
 5. Imposta le tue credenziali Moodle in [`secrets.local.yaml`](secrets.local.yaml) (o [`secrets.yaml`](secrets.yaml) se
    hai saltato lo step 4).
+    >    **Nota:** le credenziali sono necessarie per accedere ai corsi privati.
+<!--
 6. _(Opzionale)_ Crea una copia di [`path.yaml`](path.yaml) chiamata `path.local.yaml`.
 7. Imposta il tuo path (percorso) in [`path.local.yaml`](path.local.yaml) (o [`path.yaml`](path.yaml) se hai saltato lo
    step 5). Altrimenti i file saranno scaricati ed organizzati nella cartella [`moodle-downloads`](moodle-downloads) nella cartella del progetto.
-8. ```bash
+-->
+
+6. ```bash
    npm start
    ```
 
@@ -36,7 +40,7 @@ l'unicità del filename e vengono perciò rinominati con un prefisso incremental
 ## Downloaders alternativi
 
 In caso di problemi con il downloader integrato (carico eccessivo della piattaforma Moodle, problemi di encoding...) è
-possibile impostare nel file `config.yaml` `downloader: external`.
+possibile impostare nel file `config.yaml` `downloader: aria2`.
 
 In questo modo i file non verranno scaricati direttamente ma verrà invece creato un file `aria2c_input.txt` che potrà
 essere passato ad [`aria2`](https://aria2.github.io/) per il download parallelo:
