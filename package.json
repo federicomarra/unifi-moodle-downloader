@@ -6,7 +6,7 @@
   "author": "Federico Marra <fecrom@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/federicomarra/unifi-moodle-downloader.git",
+    "url": "https://github.com/federicomarra/unifi-moodle-downloader"
   },
   "engines": {
     "node": ">12"
