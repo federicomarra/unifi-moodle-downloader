@@ -1,3 +1,4 @@
 downloader: internal
+# downloader: external    # uncomment this line (and comment the first) to use the external downloader aria2c
 courseIDs:
-  - 6509  # B006802 (B032) - ARCHITETTURE DEGLI ELABORATORI 2018-2019
+  - [30925, RO]    # Ricerca Operativa A.A.2022-2023
