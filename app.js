@@ -4,10 +4,8 @@ const request = require('request-promise-native');
 const logger = require('./lib/logging').createConsoleLogger('Main');
 const Secrets = require('./lib/secrets');
 const Config = require('./lib/config');
-const PathD = require('./lib/pathD');
-const {scrape} = require('./lib/scraper');
-const {sanitizePath} = require('./lib/utils');
-const {existsSync} = require("fs");
+const { scrape } = require('./lib/scraper');
+const { sanitizePath } = require('./lib/utils');
 
 function panic(e, exit) {
   logger.error(e);
@@ -19,59 +17,43 @@ function removeParamsFromUrl(url) {
   return (urlParamIndex !== -1 && url.indexOf('=') > urlParamIndex) ? url.substring(0, urlParamIndex) : url;
 }
 
-/*
-
-*/
 async function prepareDownload(sessionCookie, course, section, filename, url, tryCounter) {
   if (tryCounter === 3) {
     return;
   }
 
-  PathD.load()
-    .then(async (pathD) => {
-      //const downloadPath = path.resolve(__dirname, 'downloads', course, section);
-      let downloadPath;
-      if (existsSync(path.resolve(__dirname, '../path.local.yaml'))){
-        downloadPath = path.resolve(pathD['path'], course, section);
-      } else {
-        downloadPath = path.resolve(__dirname, pathD['path'], course, section);
-      }
-      fse.mkdirpSync(downloadPath);
+  const downloadPath = path.resolve(__dirname, 'moodle-downloads', course, section);
+  fse.mkdirpSync(downloadPath);
 
-      let r;
-      try {
-        r = await request.get({
-          url: url,
-          headers: {
-            "cookie": `MoodleSession=${sessionCookie};`,
-          },
-          resolveWithFullResponse: true,
-          encoding: null,
-          timeout: 30000,
-        });
-      } catch (err) {
-        logger.error("Error in preflight filename extension extraction", err);
-        return prepareDownload(sessionCookie, course, section, filename, url, tryCounter !== undefined ? ++tryCounter : 1);
-      }
-      let uriHref = removeParamsFromUrl(r.request.uri.href);
-      let urlExtension = uriHref.substring(uriHref.lastIndexOf('.') + 1);
+  let r;
+  try {
+    r = await request.get({
+      url: url,
+      headers: {
+        "cookie": `MoodleSession=${sessionCookie};`,
+      },
+      resolveWithFullResponse: true,
+      encoding: null,
+      timeout: 30000,
+    });
+  } catch (err) {
+    logger.error("Error in preflight filename extension extraction", err);
+    return prepareDownload(sessionCookie, course, section, filename, url, tryCounter !== undefined ? ++tryCounter : 1);
+  }
+  let uriHref = removeParamsFromUrl(r.request.uri.href);
+  let urlExtension = uriHref.substring(uriHref.lastIndexOf('.') + 1);
 
-      filename = filename.trim();
-      if (!filename.endsWith(urlExtension)) {
-        filename = `${filename}.${urlExtension}`;
-      }
+  filename = filename.trim();
+  if (!filename.endsWith(urlExtension)) {
+      filename = `${filename}.${urlExtension}`;
+  }
 
-      return {
-        sessionCookie,
-        url,
-        filename: sanitizePath(filename),
-        path: downloadPath,
-      };
-
-    })
-    .catch(e => panic(e, false));
-
-
+  return {
+    sessionCookie,
+    url,
+    filename: sanitizePath(filename),
+    path: downloadPath,
+  };
 }
 
 async function download(downloadMetadata) {
@@ -96,7 +78,7 @@ async function download(downloadMetadata) {
     })
     .catch(e => panic(e, false));
 
-  return true;
+    return true;
 }
 
 function aria2c(downloadMetadata) {
@@ -201,7 +183,7 @@ Config.load()
               }
             }
 
-            if (config.downloader === "external" && aria2cInputFileBlocks.length > 0) {  // "aria2" downloader
+            if (config.downloader === "aria2" && aria2cInputFileBlocks.length > 0) {
               fse.writeFileSync(path.resolve(path.join(__dirname, "aria2c_input.txt")), aria2cInputFileBlocks.join('\n'));
               const resourcesCount = aria2cInputFileBlocks.length;
               logger.warn(`${resourcesCount} nuov${resourcesCount > 1 ? 'e' : 'a'} risors${resourcesCount > 1 ? 'e' : 'a'} da scaricare.`);
@@ -213,7 +195,7 @@ Config.load()
 
             if (process.env['DUMP_ALL_PATHS'] && allPaths.length > 0) {
               logger.warn("Dump di tutti i path attuali in 'paths.txt'");
-              fse.writeFileSync(path.resolve(path.join(__dirname, "paths.txt")), allPaths.join('\n') + '\n');
+              fse.writeFileSync(path.resolve(path.join(__dirname, "paths.txt")), allPaths.join('\n')+'\n');
             }
           })
           .catch(e => panic(e, false));
