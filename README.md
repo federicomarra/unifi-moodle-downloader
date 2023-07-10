@@ -1,5 +1,9 @@
 # unifi-moodle-downloader
 
+[![GitHub last release](https://img.shields.io/github/v/release/federicomarra/unifi-moodle-downloader)](https://github.com/federicomarra/unifi-moodle-downloader/releases)
+[![GitHub last commit](https://img.shields.io/github/last-commit/federicomarra/unifi-moodle-downloader?cacheSeconds=3600)](https://github.com/federicomarra/unifi-moodle-downloader/commits/master)
+[![GitHub repo size](https://img.shields.io/github/repo-size/federicomarra/unifi-moodle-downloader)](https://github.com/federicomarra/unifi-moodle-downloader/tree/master)
+
 Crawler e downloader di risorse per i corsi Moodle dell'_Università degli Studi di Firenze_.
 
 ## Quick start
