@@ -4,6 +4,9 @@ config.local.yaml
 path.local.yaml
 *.local.yaml
 
+### Working projects ###
+PROJ unifi-moodle-downloader
+
 ### Downloads ###
 moodle-downloads
 moodle-downloads/
